@@ -6,7 +6,7 @@ import MovieCard from "./MovieCard";
 export default function MoviesGrid()
 {
     const [movies, setMovies] = useState([]);
-    const [searchTerm, setSEarchTerm] = useState("");
+    const [searchTerm, setSearchTerm] = useState("");
 
     //Load the movies
     useEffect(() => {
@@ -15,6 +15,12 @@ export default function MoviesGrid()
       .then(data => setMovies(data));
 
     }, []);
+
+    //Search for a movie
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value);
+        console.log(searchTerm)
+    }
     
     return(
         <div>
@@ -22,6 +28,8 @@ export default function MoviesGrid()
             type="text"
             placeholder="Search movies..."
             className="search-input"
+            value = {searchTerm}
+            onChange={handleSearchChange}
             />
 
         <div className="movies-grid">
